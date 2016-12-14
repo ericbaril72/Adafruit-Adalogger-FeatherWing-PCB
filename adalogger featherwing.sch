@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.4">
+<eagle version="7.5.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="yes"/>
@@ -5953,7 +5953,6 @@ round, layers 1 + 16 + 21 + 39 + 49</description>
 <part name="GND2" library="supply1" deviceset="GND" device=""/>
 <part name="IC1" library="microbuilder" deviceset="RTC_PCF8523" device="T"/>
 <part name="Y1" library="microbuilder" deviceset="CRYSTAL" device="8.0X3.8" value="32khz"/>
-<part name="+3V2" library="supply1" deviceset="+3V3" device=""/>
 <part name="R1" library="microbuilder" deviceset="RESISTOR" device="0805_NOOUTLINE" value="10K"/>
 <part name="R2" library="microbuilder" deviceset="RESISTOR" device="0805_NOOUTLINE" value="10K"/>
 <part name="+3V3" library="supply1" deviceset="+3V3" device=""/>
@@ -5973,6 +5972,8 @@ round, layers 1 + 16 + 21 + 39 + 49</description>
 <part name="INT1" library="microbuilder" deviceset="HEADER-1X1" device="ROUND"/>
 <part name="FID1" library="microbuilder" deviceset="FIDUCIAL" device="&quot;&quot;"/>
 <part name="FID2" library="microbuilder" deviceset="FIDUCIAL" device="&quot;&quot;"/>
+<part name="R4" library="microbuilder" deviceset="RESISTOR" device="0805_NOOUTLINE" value="1K"/>
+<part name="C2" library="microbuilder" deviceset="CAP_CERAMIC" device="0805-NOOUTLINE" value="10uF"/>
 </parts>
 <sheets>
 <sheet>
@@ -5990,7 +5991,6 @@ round, layers 1 + 16 + 21 + 39 + 49</description>
 <instance part="GND2" gate="1" x="17.78" y="20.32" rot="MR0"/>
 <instance part="IC1" gate="G$1" x="182.88" y="160.02"/>
 <instance part="Y1" gate="G$1" x="160.02" y="162.56" rot="MR90"/>
-<instance part="+3V2" gate="G$1" x="205.74" y="165.1" rot="MR0"/>
 <instance part="R1" gate="G$1" x="73.66" y="116.84" rot="R90"/>
 <instance part="R2" gate="G$1" x="71.12" y="116.84" rot="R90"/>
 <instance part="+3V3" gate="G$1" x="73.66" y="127" rot="MR0"/>
@@ -5999,8 +5999,8 @@ round, layers 1 + 16 + 21 + 39 + 49</description>
 <instance part="B1" gate="G$1" x="162.56" y="137.16" rot="R90"/>
 <instance part="GND3" gate="1" x="167.64" y="149.86" rot="MR0"/>
 <instance part="GND4" gate="1" x="162.56" y="127" rot="MR0"/>
-<instance part="C1" gate="G$1" x="228.6" y="160.02"/>
-<instance part="+3V6" gate="G$1" x="228.6" y="167.64" rot="MR0"/>
+<instance part="C1" gate="G$1" x="251.46" y="160.02"/>
+<instance part="+3V6" gate="G$1" x="251.46" y="172.72" rot="MR0"/>
 <instance part="GND5" gate="1" x="228.6" y="154.94" rot="MR0"/>
 <instance part="JP1" gate="G$1" x="60.96" y="99.06" rot="R90"/>
 <instance part="JP2" gate="A" x="55.88" y="22.86" rot="R270"/>
@@ -6010,6 +6010,8 @@ round, layers 1 + 16 + 21 + 39 + 49</description>
 <instance part="INT1" gate="G$1" x="218.44" y="160.02"/>
 <instance part="FID1" gate="G$1" x="241.3" y="25.4"/>
 <instance part="FID2" gate="G$1" x="241.3" y="30.48"/>
+<instance part="R4" gate="G$1" x="241.3" y="167.64" rot="MR0"/>
+<instance part="C2" gate="G$1" x="233.68" y="160.02"/>
 </instances>
 <busses>
 </busses>
@@ -6219,6 +6221,10 @@ round, layers 1 + 16 + 21 + 39 + 49</description>
 <segment>
 <pinref part="C1" gate="G$1" pin="2"/>
 <pinref part="GND5" gate="1" pin="GND"/>
+<wire x1="251.46" y1="157.48" x2="233.68" y2="157.48" width="0.1524" layer="91"/>
+<pinref part="C2" gate="G$1" pin="2"/>
+<junction x="233.68" y="157.48"/>
+<wire x1="233.68" y1="157.48" x2="228.6" y2="157.48" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="MOSI" class="0">
@@ -6278,11 +6284,6 @@ round, layers 1 + 16 + 21 + 39 + 49</description>
 <wire x1="38.1" y1="25.4" x2="38.1" y2="10.16" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="IC1" gate="G$1" pin="VDD"/>
-<pinref part="+3V2" gate="G$1" pin="+3V3"/>
-<wire x1="205.74" y1="162.56" x2="198.12" y2="162.56" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="+3V3" gate="G$1" pin="+3V3"/>
 <pinref part="R1" gate="G$1" pin="2"/>
 <wire x1="73.66" y1="124.46" x2="73.66" y2="121.92" width="0.1524" layer="91"/>
@@ -6299,6 +6300,11 @@ round, layers 1 + 16 + 21 + 39 + 49</description>
 <segment>
 <pinref part="C1" gate="G$1" pin="1"/>
 <pinref part="+3V6" gate="G$1" pin="+3V3"/>
+<wire x1="251.46" y1="170.18" x2="251.46" y2="167.64" width="0.1524" layer="91"/>
+<pinref part="R4" gate="G$1" pin="1"/>
+<wire x1="251.46" y1="167.64" x2="251.46" y2="165.1" width="0.1524" layer="91"/>
+<wire x1="246.38" y1="167.64" x2="251.46" y2="167.64" width="0.1524" layer="91"/>
+<junction x="251.46" y="167.64"/>
 </segment>
 </net>
 <net name="SD_CS" class="0">
@@ -6387,21 +6393,34 @@ round, layers 1 + 16 + 21 + 39 + 49</description>
 <wire x1="60.96" y1="96.52" x2="60.96" y2="81.28" width="0.1524" layer="91"/>
 </segment>
 </net>
+<net name="PCFVDD" class="0">
+<segment>
+<pinref part="IC1" gate="G$1" pin="VDD"/>
+<wire x1="198.12" y1="162.56" x2="205.74" y2="162.56" width="0.1524" layer="91"/>
+<pinref part="R4" gate="G$1" pin="2"/>
+<wire x1="205.74" y1="162.56" x2="205.74" y2="167.64" width="0.1524" layer="91"/>
+<wire x1="205.74" y1="167.64" x2="233.68" y2="167.64" width="0.1524" layer="91"/>
+<pinref part="C2" gate="G$1" pin="1"/>
+<wire x1="233.68" y1="167.64" x2="236.22" y2="167.64" width="0.1524" layer="91"/>
+<wire x1="233.68" y1="165.1" x2="233.68" y2="167.64" width="0.1524" layer="91"/>
+<junction x="233.68" y="167.64"/>
+</segment>
+</net>
 </nets>
 </sheet>
 </sheets>
 <errors>
-<approved hash="102,1,83.82,40.64,3V,+3V3,,,,"/>
+<approved hash="102,1,38.1,38.1,3V,+3V3,,,,"/>
 <approved hash="104,1,175.26,86.36,X4,SD_VDD,+3V3,,,"/>
-<approved hash="104,1,25.4,154.94,IC1,VBAT,CR1220,,,"/>
-<approved hash="104,1,25.4,152.4,IC1,VSS,GND,,,"/>
-<approved hash="104,1,55.88,160.02,IC1,VDD,+3V3,,,"/>
-<approved hash="113,1,105.279,84.0571,JP1,,,,,"/>
-<approved hash="113,1,101.731,40.4029,JP2,,,,,"/>
-<approved hash="113,1,78.5029,82.4188,JP3,,,,,"/>
-<approved hash="113,1,86.1229,102.739,SDCS,,,,,"/>
-<approved hash="113,1,105.164,99.06,SJ1,,,,,"/>
-<approved hash="113,1,73.8971,158.881,INT1,,,,,"/>
+<approved hash="104,1,167.64,157.48,IC1,VBAT,CR1220,,,"/>
+<approved hash="104,1,167.64,154.94,IC1,VSS,GND,,,"/>
+<approved hash="104,1,198.12,162.56,IC1,VDD,PCFVDD,,,"/>
+<approved hash="113,1,59.5588,96.7571,JP1,,,,,"/>
+<approved hash="113,1,56.0112,25.1629,JP2,,,,,"/>
+<approved hash="113,1,41.7788,96.7571,JP3,,,,,"/>
+<approved hash="113,1,40.4029,117.979,SDCS,,,,,"/>
+<approved hash="113,1,59.4445,114.3,SJ1,,,,,"/>
+<approved hash="113,1,216.137,161.421,INT1,,,,,"/>
 </errors>
 </schematic>
 </drawing>
